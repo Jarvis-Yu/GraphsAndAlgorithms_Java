@@ -6,9 +6,7 @@ public class ListPlus {
 
   public static <U> List<U> removeAll(List<U> list, Collection<U> collection) {
     List<U> newList = new LinkedList<>(List.copyOf(list));
-    for (U u : collection) {
-      newList.remove(u);
-    }
+    newList.removeAll(collection);
     return newList;
   }
 

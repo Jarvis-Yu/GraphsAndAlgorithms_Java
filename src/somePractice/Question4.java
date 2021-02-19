@@ -62,21 +62,14 @@ public class Question4 {
     return new LinkedList<>(combinations);
   }
 
-  public static void main(String[] args) {
+  public static boolean hasHamiltonianCircuit(int[][] b) {
     final int M = 0x7fffffff;
-    int[][] b = {
-        { 0,  8,  5,  1,  3},
-        { 8,  0,  7, 10,  4},
-        { 5,  7,  0,  6,  9},
-        { 1, 10,  6,  0,  2},
-        { 3,  4,  9,  2,  0}
-    };
 
     final int start = 0;
     List<Integer> nodes = IntStream.range(0, b.length).boxed().collect(Collectors.toList());
     List<Integer> nodesNoStart = new ArrayList<>(nodes);
     nodesNoStart.remove(start);
-    final List<Set<Integer>> allSets = allCombinationSorted(nodesNoStart);
+    final List<Set<Integer>> noStartSets = allCombinationSorted(nodesNoStart);
     final Map<Pair<Set<Integer>, Integer>, Integer> pathLength = new HashMap<>();
 
     for (int node : nodesNoStart) {
@@ -85,7 +78,7 @@ public class Question4 {
       }
     }
 
-    for (Set<Integer> someSet : allSets) {
+    for (Set<Integer> someSet : noStartSets) {
       List<Integer> someSets1 = removeAll(nodesNoStart, someSet);
       for (int node : someSets1) {
         pathLength.put(Pair.pair(Set.copyOf(someSet), node), M);
@@ -107,12 +100,24 @@ public class Question4 {
     for (Integer node : nodesNoStart) {
       Set<Integer> excludedNodes = new HashSet<>(nodesNoStart);
       excludedNodes.remove(node);
-      opt = min(pathLength.get(Pair.pair(excludedNodes, node)), opt);
+      opt = min(pathLength.get(Pair.pair(excludedNodes, node)) + b[node][start], opt);
     }
 
-    pathLength.forEach((item1, item2) -> System.out.printf("%s: %s%n", item1, item2));
+    return opt < M;
+  }
 
-    System.out.println(opt);
+  public static final int[][] graph5 = {
+      { 0,  8,  5,  1,  3},
+      { 8,  0,  7, 10,  4},
+      { 5,  7,  0,  6,  9},
+      { 1, 10,  6,  0,  2},
+      { 3,  4,  9,  2,  0}
+  };
+
+  public static void main(String[] args) {
+    int[][] b = graph5;
+
+    System.out.println(hasHamiltonianCircuit(b));
   }
 }
 

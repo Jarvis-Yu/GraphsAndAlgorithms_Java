@@ -1,7 +1,9 @@
+package somePractice;
+
 import java.util.Arrays;
 
 // Q3
-class Scratch {
+class Question3 {
   private static int max(int a, int b) {
     return Math.max(a, b);
   }
@@ -34,14 +36,17 @@ class Scratch {
     }
   }
 
+  public static final int M = 0x7ffffff;
+
+  public static final int[][] graph4 = {
+      {M, 5, 1, 0},
+      {5, M, 2, 4},
+      {1, 2, M, 3},
+      {0, 4, 3, M}
+  };
+
   public static void main(String[] args) {
-    final int M = 0x7ffffff;
-    int[][] b = {
-        {M, 5, 1, 0},
-        {5, M, 2, 4},
-        {1, 2, M, 3},
-        {0, 4, 3, M}
-    };
+    int[][] b = graph4;
 
     printSquareArray(floydBandwidth(b));
   }
