@@ -2,7 +2,6 @@ package somePractice;
 
 import java.util.Arrays;
 
-// Q3
 class Question3 {
   private static int max(int a, int b) {
     return Math.max(a, b);

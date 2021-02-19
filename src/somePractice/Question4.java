@@ -9,7 +9,6 @@ import java.util.stream.IntStream;
 import static gadgets.ListPlus.removeAll;
 import static java.lang.Math.min;
 
-// Q4
 public class Question4 {
 
   public static void incrementFlags(List<Boolean> flags) {
