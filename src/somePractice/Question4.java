@@ -62,8 +62,6 @@ public class Question4 {
   }
 
   public static boolean hasHamiltonianCircuit(int[][] b) {
-    final int M = 0x7fffffff;
-
     final int start = 0;
     List<Integer> nodes = IntStream.range(0, b.length).boxed().collect(Collectors.toList());
     List<Integer> nodesNoStart = new ArrayList<>(nodes);
@@ -105,6 +103,8 @@ public class Question4 {
     return opt < M;
   }
 
+  public static final int M = 0x7ffffff;
+
   public static final int[][] graph5 = {
       { 0,  8,  5,  1,  3},
       { 8,  0,  7, 10,  4},
@@ -113,10 +113,17 @@ public class Question4 {
       { 3,  4,  9,  2,  0}
   };
 
-  public static void main(String[] args) {
-    int[][] b = graph5;
+  public static final int[][] graph6 = {
+      { 0,  8,  M,  M,  M},
+      { 8,  0,  7, 10,  4},
+      { M,  7,  0,  6,  9},
+      { M, 10,  6,  0,  2},
+      { M,  4,  9,  2,  0}
+  };
 
-    System.out.println(hasHamiltonianCircuit(b));
+  public static void main(String[] args) {
+    System.out.println(hasHamiltonianCircuit(graph5));
+    System.out.println(hasHamiltonianCircuit(graph6));
   }
 }
 

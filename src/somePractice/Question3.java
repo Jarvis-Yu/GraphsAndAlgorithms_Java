@@ -45,9 +45,7 @@ class Question3 {
   };
 
   public static void main(String[] args) {
-    int[][] b = graph4;
-
-    printSquareArray(floydBandwidth(b));
+    printSquareArray(floydBandwidth(graph4));
   }
 
 }
